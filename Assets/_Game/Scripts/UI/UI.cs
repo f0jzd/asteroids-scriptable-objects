@@ -15,8 +15,11 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _healthText;
         [SerializeField] private ScriptableEventInt OnHealthChangedEvent;
         
-        [Header("Score: ")]
+        [Header("Score: ")] 
+        [SerializeField] private IntVariable _points;
         [SerializeField] private TextMeshProUGUI _scoreText;
+        [SerializeField] private ScriptableEventInt OnPointsChangedEvent;
+        
         
         [Header("Timer: ")]
         [SerializeField] private TextMeshProUGUI _timerText;
@@ -36,15 +39,18 @@ namespace UI
         private void OnEnable()
         {
             OnHealthChangedEvent.Register(OnHealthChange);
+            OnPointsChangedEvent.Register(OnPointsChange);
         }
         private void OnDisable()
         {
             OnHealthChangedEvent.UnRegister(OnHealthChange);
+            OnPointsChangedEvent.UnRegister(OnPointsChange);
         }
 
         private void Start()
         {
             SetHealthText($"Health: {_healthVar.Value}");
+            SetScoreText($"Score: {_points.Value}");
         }
 
         public void OnHealthChange(int newValue)
@@ -58,6 +64,12 @@ namespace UI
         private void SetHealthText(string text)
         {
             _healthText.text = text;
+        }
+
+        public void OnPointsChange(int newValue)
+        {
+            Debug.Log("Points changed");
+            SetScoreText($"Score: {_points.Value}");
         }
         
         private void SetScoreText(string text)

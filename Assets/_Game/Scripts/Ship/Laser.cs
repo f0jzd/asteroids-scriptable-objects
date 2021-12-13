@@ -1,5 +1,7 @@
 using Asteroids;
+using ScriptableEvents;
 using UnityEngine;
+using Variables;
 
 namespace Ship
 {
@@ -7,6 +9,10 @@ namespace Ship
     public class Laser : MonoBehaviour
     {
         [SerializeField] private float _speed = 0.2f;
+        [SerializeField] private ScriptableEventInt _onHitAsteroidEvent;
+        [SerializeField] private IntReference pointsReference;
+        [SerializeField] private IntVariable points;
+        
 
         private Rigidbody2D _rigidbody;
         private float _lifetime;
@@ -26,7 +32,17 @@ namespace Ship
         {
             if (string.Equals(other.tag, "Asteroid"))
             {
+                Debug.Log("Hit ass");
                 
+                Destroy(other.gameObject);
+                pointsReference.ApplyChange(1);
+                _onHitAsteroidEvent.Raise(points.Value);
+                
+                //Destroy other, add points => update hud
+                
+                //Call event
+                //OnLaserHitAsteroidEvent.Raise(identifier?)
+                //Listener destroys asteroid
             }
         }
     }

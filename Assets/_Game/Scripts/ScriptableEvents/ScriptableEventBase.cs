@@ -7,8 +7,6 @@ namespace ScriptableEvents
     [CreateAssetMenu(fileName = "new ScriptableEvent", menuName = "ScriptableObject/ScriptableEvent", order = 0)]
     public abstract class ScriptableEventBase : ScriptableObject
     {
-    
-        
         private event Action _eventNoPayload;
 
         //private event Action<int> _eventWithInt;
@@ -35,7 +33,6 @@ namespace ScriptableEvents
 
     public abstract class ScriptableEvent<TPayload> : ScriptableEventBase
     {
-        
         private event Action<TPayload> _event;
         
         public void Register(Action<TPayload> onEventNoPayload)//What happens when the event is raised`?
@@ -51,7 +48,6 @@ namespace ScriptableEvents
         {
             _event?.Invoke(newValue);//If the event is not null we can invoke, else it will not
         }
-        
         
     }
 }

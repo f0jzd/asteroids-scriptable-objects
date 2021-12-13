@@ -19,12 +19,8 @@ namespace Ship
         {
             if (string.Equals(other.gameObject.tag, "Asteroid"))
             {
-                
-                
                 Debug.Log("Hull collided with Asteroid");
                 //TODO can we bake this into one call?
-                //_healthReference.ApplyChange(-1);
-                //_healthReference.ApplyChange(-1);
                 _health.ApplyChange(-1);
                 _onHealthChangedEvent.Raise(_health.Value);
             }
