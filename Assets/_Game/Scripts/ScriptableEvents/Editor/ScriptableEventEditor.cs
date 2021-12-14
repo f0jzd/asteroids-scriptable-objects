@@ -22,7 +22,7 @@ namespace ScriptableEvents.Editor
             
             if (GUILayout.Button("Debug Raise Event")) //Only needs thing, not posisiotn, not layout
             {
-                _target.Raise();
+                //_target.Raise();
             }
             
             

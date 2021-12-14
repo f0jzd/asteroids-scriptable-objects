@@ -8,8 +8,15 @@ namespace Ship
     [RequireComponent(typeof(Rigidbody2D))]
     public class Laser : MonoBehaviour
     {
+        
+        [Header("Values")]
         [SerializeField] private float _speed = 0.2f;
-        [SerializeField] private ScriptableEventInt _onHitAsteroidEvent;
+
+
+
+        [Header("Events: ")]
+        [SerializeField] private ScriptableEventIntReference _onHitAsteroidEvent;
+        [SerializeField] private ScriptableEventInt _onHitAsteroidEventSimple;
         [SerializeField] private IntReference pointsReference;
         [SerializeField] private IntVariable points;
         
@@ -32,11 +39,24 @@ namespace Ship
         {
             if (string.Equals(other.tag, "Asteroid"))
             {
-                Debug.Log("Hit ass");
+                var asteroid = other.GetComponentInParent<Asteroid>();
+                var id = asteroid.GetInstanceID();
+                //_onHitAsteroidEvent.Raise(id);
+                _onHitAsteroidEventSimple.Raise(id);
                 
+                //asteroid.DestroyMe();
+                
+                
+                
+                
+                Debug.Log("Hit ass");
                 Destroy(other.gameObject);
                 pointsReference.ApplyChange(1);
-                _onHitAsteroidEvent.Raise(points.Value);
+                
+                
+                
+                
+                //_onHitAsteroidEvent.Raise(points.Value);
                 
                 //Destroy other, add points => update hud
                 

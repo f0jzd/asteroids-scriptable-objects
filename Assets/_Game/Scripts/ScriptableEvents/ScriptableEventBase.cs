@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using Variables;
 
 namespace ScriptableEvents
 {
@@ -20,7 +21,7 @@ namespace ScriptableEvents
             _eventNoPayload -= onEventNoPayload;
         }
 
-        public void Raise()
+        public void Raise(IntReference intReference)
         {
             _eventNoPayload?.Invoke();//If the event is not null we can invoke, else it will not
         }

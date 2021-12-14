@@ -13,12 +13,12 @@ namespace UI
         [Header("Health: ")]
         [SerializeField] private IntVariable _healthVar;
         [SerializeField] private TextMeshProUGUI _healthText;
-        [SerializeField] private ScriptableEventInt OnHealthChangedEvent;
+        [SerializeField] private ScriptableEventIntReference OnHealthChangedEvent;
         
         [Header("Score: ")] 
         [SerializeField] private IntVariable _points;
         [SerializeField] private TextMeshProUGUI _scoreText;
-        [SerializeField] private ScriptableEventInt OnPointsChangedEvent;
+        [SerializeField] private ScriptableEventIntReference OnPointsChangedEvent;
         
         
         [Header("Timer: ")]

@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Variables;
 using Random = UnityEngine.Random;
 
 namespace Asteroids
@@ -19,9 +21,12 @@ namespace Asteroids
 
         private Rigidbody2D _rigidbody;
         private Vector3 _direction;
+        private int instanceId;
 
         private void Start()
         {
+            instanceId = GetInstanceID();
+            
             _rigidbody = GetComponent<Rigidbody2D>();
             
             SetDirection();
@@ -29,6 +34,37 @@ namespace Asteroids
             AddTorque();
             SetSize();
         }
+
+        
+        //TODO move to singel listener,something like on  ASteroidDestroyer?
+        public void OnHitByLaser(IntReference asteroidId)
+        {
+            
+            if (instanceId == asteroidId.GetValue())
+            {
+                Destroy(gameObject);
+            }
+        }
+        
+        public void OnHitByLaserInt(int asteroid)
+        {
+            
+            if (instanceId == asteroid)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public void DestroyMe()
+        {
+            //OnAsteroidDestroyedEvent.Raise
+        }
+        
+        
+        
+        
+        
+
         private void SetDirection()
         {
             var size = new Vector2(3f, 3f);

@@ -11,7 +11,10 @@ namespace Ship
         [SerializeField] private IntVariable _health;
         [SerializeField] private IntReference _healthReference;
         //[SerializeField] private ScriptableEventBase _onHealthChangedEvent;
-        [SerializeField] private ScriptableEventInt _onHealthChangedEvent;
+        [SerializeField] private ScriptableEventIntReference _onHealthChangedEvent;
+
+        [SerializeField] private IntObservable _healthObservable;
+        
         
         
 
@@ -22,7 +25,8 @@ namespace Ship
                 Debug.Log("Hull collided with Asteroid");
                 //TODO can we bake this into one call?
                 _health.ApplyChange(-1);
-                _onHealthChangedEvent.Raise(_health.Value);
+                //_onHealthChangedEvent.Raise(_health.Value);
+                _healthObservable.ApplyChange(-1);
             }
         }
     }
