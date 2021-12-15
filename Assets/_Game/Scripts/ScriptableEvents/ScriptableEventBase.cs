@@ -21,7 +21,7 @@ namespace ScriptableEvents
             _eventNoPayload -= onEventNoPayload;
         }
 
-        public void Raise(IntReference intReference)
+        public void Raise()
         {
             _eventNoPayload?.Invoke();//If the event is not null we can invoke, else it will not
         }

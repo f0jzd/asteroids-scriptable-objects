@@ -25,4 +25,29 @@ namespace Variables
             _currentValue = _value;
         }
     }
+
+    /*public class VariableBase<T> : ScriptableObject
+    {
+        [SerializeField] private int _value;
+
+        private int _currentValue;
+
+        public int Value => _currentValue;
+
+        public virtual void ApplyChange(T change)
+        {
+            _currentValue += change;
+        }
+
+        private void OnEnable()
+        {
+            _currentValue = _value;
+        }
+        
+    }*/
+
+    /*public class myIntThhingy : VariableBase<int>
+    {
+        
+    }*/
 }

@@ -1,4 +1,5 @@
 using System;
+using ScriptableEvents;
 using UnityEngine;
 using Variables;
 using Random = UnityEngine.Random;
@@ -8,6 +9,9 @@ namespace Asteroids
     [RequireComponent(typeof(Rigidbody2D))]
     public class Asteroid : MonoBehaviour
     {
+        private ScriptableEventInt _onAsteroidDestroyed;
+        
+        
         [Header("Config:")]
         [SerializeField] private float _minForce;
         [SerializeField] private float _maxForce;
@@ -55,9 +59,9 @@ namespace Asteroids
             }
         }
 
-        public void DestroyMe()
+        public void HitByLaser()
         {
-            //OnAsteroidDestroyedEvent.Raise
+            _onAsteroidDestroyed.Raise(this.instanceId);
         }
         
         

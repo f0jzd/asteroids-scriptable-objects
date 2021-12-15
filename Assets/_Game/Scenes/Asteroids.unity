@@ -206,6 +206,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1237586336 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8597208082757243919, guid: c71243f12cdfc2a4282f1805a6098327, type: 3}
+  m_PrefabInstance: {fileID: 7101966234704262264}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4e0c7004c84bd1bb099cbacaaa8298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1867257715
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,6 +276,10 @@ PrefabInstance:
       propertyPath: _health
       value: 
       objectReference: {fileID: 11400000, guid: 8c79339e67b2ff842b81b0bba0d80523, type: 2}
+    - target: {fileID: 2970632031999273633, guid: ab39a3d0044af1d46b46c0ccbc24f3dd, type: 3}
+      propertyPath: _healthObservable
+      value: 
+      objectReference: {fileID: 11400000, guid: 70003ac406ca23946a188b61e942d6b2, type: 2}
     - target: {fileID: 2970632031999273633, guid: ab39a3d0044af1d46b46c0ccbc24f3dd, type: 3}
       propertyPath: _onHealthChangedEvent
       value: 
@@ -376,7 +391,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1409532952, guid: c71243f12cdfc2a4282f1805a6098327, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1409532952, guid: c71243f12cdfc2a4282f1805a6098327, type: 3}
       propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -478,8 +493,7 @@ PrefabInstance:
       propertyPath: OnPointsChangedEvent
       value: 
       objectReference: {fileID: 11400000, guid: ee39ec4ae5a77d147a55fe3ef47a2c34, type: 2}
-    m_RemovedComponents:
-    - {fileID: 1409532952, guid: c71243f12cdfc2a4282f1805a6098327, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c71243f12cdfc2a4282f1805a6098327, type: 3}
 --- !u!1 &7101966234704262265 stripped
 GameObject:
@@ -495,10 +509,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7101966234704262265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21e5c24a39cb4a8bace7f92f3b21429b, type: 3}
+  m_Script: {fileID: 11500000, guid: dbf84459f8024be98c729e266fbfeb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _eventNoPayload: {fileID: 0}
   _responseNoPayload:
     m_PersistentCalls:
       m_Calls: []
+  _event: {fileID: 11400000, guid: ee39ec4ae5a77d147a55fe3ef47a2c34, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1237586336}
+        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
+        m_MethodName: OnPointsChange
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

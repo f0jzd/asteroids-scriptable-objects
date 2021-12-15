@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ScriptableEvents.Editor
 {
-    [CustomEditor(typeof(ScriptableEventBase))]
+    [CustomEditor(typeof(ScriptableEventBase),true)]
     public class ScriptableEventEditor : UnityEditor.Editor
     {
         private ScriptableEventBase _target;
@@ -22,10 +22,12 @@ namespace ScriptableEvents.Editor
             
             if (GUILayout.Button("Debug Raise Event")) //Only needs thing, not posisiotn, not layout
             {
-                //_target.Raise();
+                _target.Raise();
             }
-            
-            
+
+            //var pos = new Rect(Vector2.zero, new Vector2(10,10));
+            //GUI.Button(pos, "My TOehr Button");
+
             //GUILayout
             //EditorGUI
             //EditorGUILayout

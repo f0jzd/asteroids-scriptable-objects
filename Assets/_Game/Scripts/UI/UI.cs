@@ -36,7 +36,7 @@ namespace UI
         }*/
 
 
-        private void OnEnable()
+        /*private void OnEnable()
         {
             OnHealthChangedEvent.Register(OnHealthChange);
             OnPointsChangedEvent.Register(OnPointsChange);
@@ -45,7 +45,7 @@ namespace UI
         {
             OnHealthChangedEvent.UnRegister(OnHealthChange);
             OnPointsChangedEvent.UnRegister(OnPointsChange);
-        }
+        }*/
 
         private void Start()
         {
@@ -55,7 +55,6 @@ namespace UI
 
         public void OnHealthChange(int newValue)
         {
-            
             Debug.Log("OnHealthChanged");
             SetHealthText($"Health: {_healthVar.Value}");
         }

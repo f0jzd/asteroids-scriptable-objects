@@ -15,8 +15,8 @@ namespace Ship
 
 
         [Header("Events: ")]
-        [SerializeField] private ScriptableEventIntReference _onHitAsteroidEvent;
-        [SerializeField] private ScriptableEventInt _onHitAsteroidEventSimple;
+        [SerializeField] private ScriptableEventIntReference _onPointsChangedEvent;
+        //[SerializeField] private ScriptableEventInt _onHitAsteroidEventSimple;
         [SerializeField] private IntReference pointsReference;
         [SerializeField] private IntVariable points;
         
@@ -42,16 +42,14 @@ namespace Ship
                 var asteroid = other.GetComponentInParent<Asteroid>();
                 var id = asteroid.GetInstanceID();
                 //_onHitAsteroidEvent.Raise(id);
-                _onHitAsteroidEventSimple.Raise(id);
+                //_onHitAsteroidEventSimple.Raise(id);
                 
                 //asteroid.DestroyMe();
-                
-                
-                
-                
-                Debug.Log("Hit ass");
+
+                Debug.Log("Hit asteroid");
                 Destroy(other.gameObject);
-                pointsReference.ApplyChange(1);
+                pointsReference.ApplyChange(+1);
+                _onPointsChangedEvent.Raise(points.Value);
                 
                 
                 

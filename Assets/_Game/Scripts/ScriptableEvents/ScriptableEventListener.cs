@@ -10,8 +10,6 @@ namespace ScriptableEvents
         [SerializeField] private UnityEvent _responseNoPayload;
         
         
-        
-
         private void OnEventRaised()//This is the event that will happen
         {
             _responseNoPayload.Invoke();

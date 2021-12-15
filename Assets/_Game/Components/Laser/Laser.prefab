@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.2
-  _onHitAsteroidEvent: {fileID: 11400000, guid: ee39ec4ae5a77d147a55fe3ef47a2c34, type: 2}
+  _onPointsChangedEvent: {fileID: 11400000, guid: ee39ec4ae5a77d147a55fe3ef47a2c34, type: 2}
   pointsReference:
     _intVariable: {fileID: 11400000, guid: 5e664889ce7a6ad41ab754ef3ff23d66, type: 2}
     _simpleValue: 0
