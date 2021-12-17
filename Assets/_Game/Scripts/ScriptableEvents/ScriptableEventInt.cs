@@ -8,4 +8,8 @@ namespace ScriptableEvents
     {
         
     }
+    public class ScriptableEventVector3 : ScriptableEvent<Vector3>
+    {
+        
+    }
 }
