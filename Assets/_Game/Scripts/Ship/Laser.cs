@@ -2,6 +2,7 @@ using System;
 using Asteroids;
 using DefaultNamespace.RuntimeSets;
 using ScriptableEvents;
+using ScriptableEvents.GameEvents;
 using UnityEngine;
 using Variables;
 
@@ -22,6 +23,8 @@ namespace Ship
 
         [Header("Events: ")]
         [SerializeField] private ScriptableEventIntReference _onPointsChangedEvent;
+        [SerializeField] private GameEventGameObject _onAsteroidDestroyed;
+
         //[SerializeField] private ScriptableEventInt _onHitAsteroidEventSimple;
         [SerializeField] private IntReference pointsReference;
         [SerializeField] private IntVariable points;
@@ -62,9 +65,14 @@ namespace Ship
                 //asteroid.DestroyMe();
 
                 Debug.Log("Hit asteroid");
-                Destroy(other.gameObject);
+                //Destroy(other.gameObject);
+                
+                _onAsteroidDestroyed.Raise(other.gameObject);
+                
                 pointsReference.ApplyChange(+1);
                 _onPointsChangedEvent.Raise(points.Value);
+                
+                
                 
                 
                 //_onHitAsteroidEvent.Raise(points.Value);

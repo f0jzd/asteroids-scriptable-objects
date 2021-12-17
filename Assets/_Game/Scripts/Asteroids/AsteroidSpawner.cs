@@ -12,6 +12,7 @@ namespace Asteroids
         [SerializeField] private int _minAmount;
         [SerializeField] private int _maxAmount;
         
+        
         private float _timer;
         private float _nextSpawnTime;
         private Camera _camera;

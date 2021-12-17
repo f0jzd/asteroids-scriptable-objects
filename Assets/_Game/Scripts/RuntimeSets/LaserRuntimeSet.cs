@@ -7,7 +7,7 @@ using UnityEngine;
 namespace DefaultNamespace.RuntimeSets
 {
     [CreateAssetMenu]
-    public class LaserRuntimeSet : ScriptableObject
+    public class LaserRuntimeSet : UnityEngine.ScriptableObject
     {
         
         //This will keep track of all the lasers in the scene, and we will create a script to print how many we have

@@ -9,7 +9,10 @@ namespace Asteroids
     [RequireComponent(typeof(Rigidbody2D))]
     public class Asteroid : MonoBehaviour
     {
-        private ScriptableEventInt _onAsteroidDestroyed;
+        
+        [SerializeField] private AsteroidRuntimeSet _asteroidRuntimeSet;
+        [SerializeField] private ScriptableEventInt _onAsteroidDestroyed;
+        private AsteroidManager _asteroidManager;
         
         
         [Header("Config:")]
@@ -29,6 +32,9 @@ namespace Asteroids
 
         private void Start()
         {
+            
+            _asteroidRuntimeSet.Add(gameObject);
+            
             instanceId = GetInstanceID();
             
             _rigidbody = GetComponent<Rigidbody2D>();
@@ -61,13 +67,18 @@ namespace Asteroids
 
         public void HitByLaser()
         {
+            //_asteroidManager.AsteroidDestroyer(this.gameObject);
             _onAsteroidDestroyed.Raise(this.instanceId);
         }
-        
-        
-        
-        
-        
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (string.Equals(other.tag, "Laser"))
+            {
+                HitByLaser();
+            }
+        }
+
 
         private void SetDirection()
         {

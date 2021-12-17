@@ -76,6 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017c14a0b2ceaec4191b684dfd17404f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _asteroidRuntimeSet: {fileID: 11400000, guid: 536fca40279f61844b9650c600e46fc0, type: 2}
+  _onAsteroidDestroyed: {fileID: 11400000, guid: 2a0ab0be988c63745b336168a4590030, type: 2}
   _minForce: 2
   _maxForce: 6
   _minSize: 0.2
