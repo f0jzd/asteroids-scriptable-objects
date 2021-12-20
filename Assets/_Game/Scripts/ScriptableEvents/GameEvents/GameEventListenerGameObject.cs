@@ -21,7 +21,7 @@ namespace ScriptableEvents.GameEvents
             _gameEvent.UnRegister(OnEventRaised);
         }
 
-        public void OnEventRaised(GameObject value)
+        private void OnEventRaised(GameObject value)
         {
             _response?.Invoke(value);//NUll propagation
         }

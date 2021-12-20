@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Codice.Client.BaseCommands;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace ScriptableEvents.Editor

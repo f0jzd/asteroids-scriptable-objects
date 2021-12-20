@@ -1,5 +1,4 @@
-﻿using Codice.CM.Common;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Variables.Editor

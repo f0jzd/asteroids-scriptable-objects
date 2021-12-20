@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Asteroids
@@ -8,23 +7,18 @@ namespace Asteroids
     public class AsteroidRuntimeSet : ScriptableObject
     {
 
-        private readonly List<GameObject> _asteroids = new List<GameObject>();
+        private Dictionary<int,GameObject> _asteroids = new Dictionary<int, GameObject>();
 
         public int Amount => _asteroids.Count;
         
-        public void Add(GameObject astroid)
+        public void Add(int ID,GameObject astroid)
         {
-            _asteroids.Add(astroid);
+            _asteroids.Add(ID,astroid);
         }
-        public void Remove(GameObject astroid)
+        public void Remove(int ID)
         {
-            _asteroids.Remove(astroid);
+            _asteroids.Remove(ID);
         }
-        public void GetInstanceID(GameObject astroid)
-        {
-            astroid.GetInstanceID();
-        }
-        
         private void OnEnable()
         {
             _asteroids.Clear();

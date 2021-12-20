@@ -1,21 +1,34 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 namespace Asteroids
 {
     public class AsteroidSpawner : MonoBehaviour
     {
+        
+        
         [SerializeField] private Asteroid _asteroidPrefab;
         [SerializeField] private float _minSpawnTime;
         [SerializeField] private float _maxSpawnTime;
         [SerializeField] private int _minAmount;
         [SerializeField] private int _maxAmount;
+
+        [SerializeField] private float fragmentSizeRelativeToOriginal;
         
+
+        private Asteroid spawnedItem;
         
         private float _timer;
         private float _nextSpawnTime;
         private Camera _camera;
+        
+        [SerializeField] private AsteroidRuntimeSet _asteroidRuntimeSet;
+        
+        
+
 
         private enum SpawnLocation
         {
@@ -62,12 +75,30 @@ namespace Asteroids
         private void Spawn()
         {
             var amount = Random.Range(_minAmount, _maxAmount + 1);
-            
             for (var i = 0; i < amount; i++)
             {
                 var location = GetSpawnLocation();
                 var position = GetStartPosition(location);
-                Instantiate(_asteroidPrefab, position, Quaternion.identity);
+                spawnedItem = Instantiate(_asteroidPrefab, position, Quaternion.identity);
+            }
+        }
+
+        public void SpawnFragments(Vector3 position, Transform asteroidSize)
+        {
+            var amount = Random.Range(2, 5);
+
+            //if (!(asteroidSize.localScale.x / 2 > 0.2f) || !(asteroidSize.localScale.y / 2 > 0.2f)) return;
+            for (var i = 0; i < amount; i++)
+            {
+                spawnedItem = Instantiate(_asteroidPrefab, position, Quaternion.identity);
+                var localScale = asteroidSize.transform.localScale;
+                spawnedItem._shape.transform.localScale = new Vector3(
+                    localScale.x *fragmentSizeRelativeToOriginal, 
+                    localScale.y *fragmentSizeRelativeToOriginal);
+
+                Destroy(spawnedItem.gameObject,0.5f);
+                _asteroidRuntimeSet.Remove(spawnedItem.gameObject.GetInstanceID());
+                
             }
         }
 

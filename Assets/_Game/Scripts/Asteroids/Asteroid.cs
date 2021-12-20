@@ -1,4 +1,3 @@
-using System;
 using ScriptableEvents;
 using UnityEngine;
 using Variables;
@@ -24,7 +23,7 @@ namespace Asteroids
         [SerializeField] private float _maxTorque;
 
         [Header("References:")]
-        [SerializeField] private Transform _shape;
+        public Transform _shape;
 
         private Rigidbody2D _rigidbody;
         private Vector3 _direction;
@@ -33,7 +32,7 @@ namespace Asteroids
         private void Start()
         {
             
-            _asteroidRuntimeSet.Add(gameObject);
+            _asteroidRuntimeSet.Add(GetInstanceID(),gameObject);
             
             instanceId = GetInstanceID();
             

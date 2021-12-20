@@ -1,4 +1,3 @@
-using System;
 using Asteroids;
 using DefaultNamespace.RuntimeSets;
 using ScriptableEvents;
@@ -19,11 +18,11 @@ namespace Ship
         [Header("Values")]
         [SerializeField] private float _speed = 0.2f;
 
-
-
+        
         [Header("Events: ")]
         [SerializeField] private ScriptableEventIntReference _onPointsChangedEvent;
         [SerializeField] private GameEventGameObject _onAsteroidDestroyed;
+        [SerializeField] private GameEventAsteroid _onHitAsteroid;
 
         //[SerializeField] private ScriptableEventInt _onHitAsteroidEventSimple;
         [SerializeField] private IntReference pointsReference;
@@ -39,7 +38,6 @@ namespace Ship
             
             _rigidbody = GetComponent<Rigidbody2D>();
             _laserRuntimeSet.Add(gameObject);
-            Debug.Log("Amount of Lasers: " + _laserRuntimeSet.Amount);
         }
 
         private void OnDestroy()
@@ -59,29 +57,14 @@ namespace Ship
             {
                 var asteroid = other.GetComponentInParent<Asteroid>();
                 var id = asteroid.GetInstanceID();
-                //_onHitAsteroidEvent.Raise(id);
-                //_onHitAsteroidEventSimple.Raise(id);
                 
-                //asteroid.DestroyMe();
-
-                Debug.Log("Hit asteroid");
-                //Destroy(other.gameObject);
-                
-                _onAsteroidDestroyed.Raise(other.gameObject);
+                //_onAsteroidDestroyed.Raise(other.gameObject);
+                _onHitAsteroid.Raise(asteroid);
                 
                 pointsReference.ApplyChange(+1);
                 _onPointsChangedEvent.Raise(points.Value);
                 
-                
-                
-                
-                //_onHitAsteroidEvent.Raise(points.Value);
-                
-                //Destroy other, add points => update hud
-                
-                //Call event
-                //OnLaserHitAsteroidEvent.Raise(identifier?)
-                //Listener destroys asteroid
+                Destroy(this.gameObject);
             }
         }
     }

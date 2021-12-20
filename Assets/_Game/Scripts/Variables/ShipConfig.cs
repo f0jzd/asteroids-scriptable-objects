@@ -1,4 +1,4 @@
-using UnityEngine;
+
 /*
 [CreateAssetMenu(fileName = "Ship Config", menuName = "ScriptableObject/ShipConfig", order = 0)]
 

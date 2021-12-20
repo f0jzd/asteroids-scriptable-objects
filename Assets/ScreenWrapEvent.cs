@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using ScriptableEvents;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 

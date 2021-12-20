@@ -1,6 +1,4 @@
-﻿using System;
-using ScriptableEvents;
-using Ship;
+﻿using ScriptableEvents;
 using TMPro;
 using UnityEngine;
 using Variables;
@@ -55,7 +53,6 @@ namespace UI
 
         public void OnHealthChange(int newValue)
         {
-            Debug.Log("OnHealthChanged");
             SetHealthText($"Health: {_healthVar.Value}");
         }
         
@@ -67,7 +64,6 @@ namespace UI
 
         public void OnPointsChange(int newValue)
         {
-            Debug.Log("Points changed");
             SetScoreText($"Score: {_points.Value}");
         }
         
