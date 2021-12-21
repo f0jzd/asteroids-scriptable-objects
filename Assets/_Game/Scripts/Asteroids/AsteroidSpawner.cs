@@ -11,15 +11,18 @@ namespace Asteroids
         
         
         [SerializeField] private Asteroid _asteroidPrefab;
+        [SerializeField] private AsteroidFragments _asteroidFragments;
         [SerializeField] private float _minSpawnTime;
         [SerializeField] private float _maxSpawnTime;
         [SerializeField] private int _minAmount;
         [SerializeField] private int _maxAmount;
 
-        [SerializeField] private float fragmentSizeRelativeToOriginal;
+        [SerializeField] private float MaxFragmentSize;
+        [SerializeField] private bool DestroySelf;
         
 
         private Asteroid spawnedItem;
+        private AsteroidFragments spawnedItFragments;
         
         private float _timer;
         private float _nextSpawnTime;
@@ -85,20 +88,32 @@ namespace Asteroids
 
         public void SpawnFragments(Vector3 position, Transform asteroidSize)
         {
-            var amount = Random.Range(2, 5);
-
-            //if (!(asteroidSize.localScale.x / 2 > 0.2f) || !(asteroidSize.localScale.y / 2 > 0.2f)) return;
-            for (var i = 0; i < amount; i++)
+            if (asteroidSize.transform.localScale.x / 2 > MaxFragmentSize && asteroidSize.transform.localScale.y / 2 > MaxFragmentSize)
             {
-                spawnedItem = Instantiate(_asteroidPrefab, position, Quaternion.identity);
-                var localScale = asteroidSize.transform.localScale;
-                spawnedItem._shape.transform.localScale = new Vector3(
-                    localScale.x *fragmentSizeRelativeToOriginal, 
-                    localScale.y *fragmentSizeRelativeToOriginal);
+                var amount = Random.Range(2, 5);
 
-                Destroy(spawnedItem.gameObject,0.5f);
-                _asteroidRuntimeSet.Remove(spawnedItem.gameObject.GetInstanceID());
-                
+                //if (!(asteroidSize.localScale.x / 2 > 0.2f) || !(asteroidSize.localScale.y / 2 > 0.2f)) return;
+                for (var i = 0; i < amount; i++)
+                {
+                    var spawnedFragItem = Instantiate(_asteroidFragments, position, Quaternion.identity);//YOU ARE SPAWNING A NEW ASTEROID NOT ACOPY
+
+                    var newSize = new Vector3(
+                        asteroidSize.transform.localScale.x / 2,
+                        asteroidSize.transform.localScale.y / 2);
+
+                    spawnedFragItem._shape.localScale = newSize;
+                    
+                    /*var localScale = asteroidSize.transform.localScale;
+                    spawnedItem._shape.transform.localScale = new Vector3(
+                        localScale.x *fragmentSizeRelativeToOriginal, 
+                        localScale.y *fragmentSizeRelativeToOriginal);*/
+
+                    if (DestroySelf)
+                    {
+                        Destroy(spawnedFragItem.gameObject,0.5f);
+                        _asteroidRuntimeSet.Remove(spawnedFragItem.gameObject.GetInstanceID());
+                    }
+                }
             }
         }
 

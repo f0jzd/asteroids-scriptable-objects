@@ -3,8 +3,6 @@ using UnityEngine.Events;
 
 namespace ScriptableEvents.GameEvents
 {
-    [CreateAssetMenu(fileName = "new Vector3 Event", menuName = "ScriptableObject/Events/VectorEvents", order = 0)]
-
     public class GameEventListenerVector3 : MonoBehaviour
     {
         [SerializeField] private GameEventVector3 _gameEvent;

@@ -48,8 +48,8 @@ MonoBehaviour:
   _laserRuntimeSet: {fileID: 11400000, guid: 2e47967bb16dfe34a96a23143df47a49, type: 2}
   _speed: 0.2
   _onPointsChangedEvent: {fileID: 11400000, guid: ee39ec4ae5a77d147a55fe3ef47a2c34, type: 2}
-  _onAsteroidDestroyed: {fileID: 11400000, guid: 85cbff568f66851408a934791453c060, type: 2}
   _onHitAsteroid: {fileID: 11400000, guid: f058f1b2f8a2ea24f828032db697510c, type: 2}
+  _onHitAsteroidFragment: {fileID: 11400000, guid: fa146d629f303ea41a56798f64cfdeae, type: 2}
   pointsReference:
     _intVariable: {fileID: 11400000, guid: 5e664889ce7a6ad41ab754ef3ff23d66, type: 2}
     _simpleValue: 0

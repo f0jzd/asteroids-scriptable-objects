@@ -21,10 +21,9 @@ namespace Ship
         
         [Header("Events: ")]
         [SerializeField] private ScriptableEventIntReference _onPointsChangedEvent;
-        [SerializeField] private GameEventGameObject _onAsteroidDestroyed;
         [SerializeField] private GameEventAsteroid _onHitAsteroid;
-
-        //[SerializeField] private ScriptableEventInt _onHitAsteroidEventSimple;
+        [SerializeField] private GameEventAsteroidFragment _onHitAsteroidFragment;
+        
         [SerializeField] private IntReference pointsReference;
         [SerializeField] private IntVariable points;
         
@@ -55,16 +54,27 @@ namespace Ship
         {
             if (string.Equals(other.tag, "Asteroid"))
             {
-                var asteroid = other.GetComponentInParent<Asteroid>();
-                var id = asteroid.GetInstanceID();
+                if (other.GetComponentInParent<Asteroid>())
+                {
+                    var asteroid = other.GetComponentInParent<Asteroid>();
+                    _onHitAsteroid.Raise(asteroid);
+
+                    pointsReference.ApplyChange(+1);
+                    _onPointsChangedEvent.Raise(points.Value);
                 
-                //_onAsteroidDestroyed.Raise(other.gameObject);
-                _onHitAsteroid.Raise(asteroid);
+                    Destroy(this.gameObject);
+                }
+
+                if (other.GetComponentInParent<AsteroidFragments>())
+                {
+                    var asteroid = other.GetComponentInParent<AsteroidFragments>();
+                    _onHitAsteroidFragment.Raise(asteroid);
+
+                    pointsReference.ApplyChange(+1);
+                    _onPointsChangedEvent.Raise(points.Value);
                 
-                pointsReference.ApplyChange(+1);
-                _onPointsChangedEvent.Raise(points.Value);
-                
-                Destroy(this.gameObject);
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
