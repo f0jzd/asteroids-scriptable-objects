@@ -572,12 +572,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _asteroidPrefab: {fileID: 1784223117350305363, guid: 01106835b2bc0e347a3bb06b7544b51a, type: 3}
-  _asteroidFragments: {fileID: -5208328082743021780, guid: 65c7a0bb138fac245abb0e522c6f0a49, type: 3}
   _minSpawnTime: 1
   _maxSpawnTime: 4
   _minAmount: 1
   _maxAmount: 2
+  _asteroidFragments: {fileID: -5208328082743021780, guid: 65c7a0bb138fac245abb0e522c6f0a49, type: 3}
   MaxFragmentSize: 0.1
+  fragmentLifetime: 0.5
   DestroySelf: 1
   _asteroidRuntimeSet: {fileID: 11400000, guid: 536fca40279f61844b9650c600e46fc0, type: 2}
 --- !u!4 &1867257717

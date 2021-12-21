@@ -25,10 +25,10 @@ namespace ScriptableEvents.GameEvents
         {
             _response?.Invoke(value);//NUll propagation
             
-            
-            #if DEBUG
+            //Attempt at Define symbol
+            /*#if DEBUG
             Debug.Log(value);
-            #endif
+            #endif*/
         }
         
     }

@@ -11,14 +11,19 @@ namespace Asteroids
         
         
         [SerializeField] private Asteroid _asteroidPrefab;
-        [SerializeField] private AsteroidFragments _asteroidFragments;
+        
         [SerializeField] private float _minSpawnTime;
         [SerializeField] private float _maxSpawnTime;
         [SerializeField] private int _minAmount;
         [SerializeField] private int _maxAmount;
 
+        
+        [Header("Fragment related variables: ")]
+        [SerializeField] private AsteroidFragments _asteroidFragments;
         [SerializeField] private float MaxFragmentSize;
+        [SerializeField] private float fragmentLifetime;
         [SerializeField] private bool DestroySelf;
+        
         
 
         private Asteroid spawnedItem;
@@ -103,14 +108,10 @@ namespace Asteroids
 
                     spawnedFragItem._shape.localScale = newSize;
                     
-                    /*var localScale = asteroidSize.transform.localScale;
-                    spawnedItem._shape.transform.localScale = new Vector3(
-                        localScale.x *fragmentSizeRelativeToOriginal, 
-                        localScale.y *fragmentSizeRelativeToOriginal);*/
 
                     if (DestroySelf)
                     {
-                        Destroy(spawnedFragItem.gameObject,0.5f);
+                        Destroy(spawnedFragItem.gameObject,fragmentLifetime);
                         _asteroidRuntimeSet.Remove(spawnedFragItem.gameObject.GetInstanceID());
                     }
                 }
